@@ -59,6 +59,20 @@ project "App-Server-Headless"
 
        defines { "WL_HEADLESS" }
 
+   filter "system:macosx"
+     libdirs { "../Walnut/Walnut-Modules/Walnut-Networking/vendor/GameNetworkingSockets/bin/Macos" }
+     links { "GameNetworkingSockets" }
+
+     linkoptions { 
+        "-rpath @executable_path/."
+      }
+
+      postbuildcommands
+      {
+         "{COPY} ../Walnut/Walnut-Modules/Walnut-Networking/vendor/GameNetworkingSockets/bin/Macos/libGameNetworkingSockets.dylib %{cfg.targetdir}",
+      }
+      defines { "WL_HEADLESS" }
+
    filter "configurations:Debug"
       defines { "WL_DEBUG" }
       runtime "Debug"

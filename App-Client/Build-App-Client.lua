@@ -30,7 +30,11 @@ project "App-Client"
    links
    {
        "App-Common",
-
+       "Walnut",
+       "Walnut-Networking",
+       "ImGui",
+       "GLFW",
+       "vulkan",
        "yaml-cpp",
    }
 
@@ -70,3 +74,25 @@ project "App-Client"
       runtime "Release"
       optimize "On"
       symbols "Off"
+
+   filter "system:macosx"
+     defines { "WL_PLATFORM_MACOS" }
+
+     linkoptions { 
+        "-rpath @executable_path/.",
+      }
+      libdirs { "../Walnut/Walnut-Modules/Walnut-Networking/vendor/GameNetworkingSockets/bin/Macos" }
+
+      links 
+      {
+            "Cocoa.framework",
+            "IOKit.framework",
+            "CoreFoundation.framework",
+            "GameNetworkingSockets",
+      }
+
+      postbuildcommands
+      {
+         "{COPY} ../Walnut/Walnut-Modules/Walnut-Networking/vendor/GameNetworkingSockets/bin/Macos/libGameNetworkingSockets.dylib %{cfg.targetdir}",
+      }
+   filter {}
