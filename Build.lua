@@ -1,12 +1,12 @@
 -- premake5.lua
 workspace "Walnut-Chat"
-   architecture "x64"
    cppdialect "C++20"
    configurations { "Debug", "Release", "Dist" }
    startproject "WalnutApp"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
+      architecture "x64"
       buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
 
 -- Directories

@@ -1,6 +1,5 @@
 -- premake5.lua
 workspace "Walnut-Chat-Headless"
-   architecture "x64"
    configurations { "Debug", "Release", "Dist" }
    startproject "App-Server"
 
@@ -12,7 +11,11 @@ workspace "Walnut-Chat-Headless"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
+      architecture "x64"
       buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
+    
+   filter "system:linux"
+     architecture "x64"
 
 -- Directories
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
