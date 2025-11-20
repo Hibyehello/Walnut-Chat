@@ -94,5 +94,6 @@ project "App-Client"
       postbuildcommands
       {
          "{COPY} ../Walnut/Walnut-Modules/Walnut-Networking/vendor/GameNetworkingSockets/bin/Macos/libGameNetworkingSockets.dylib %{cfg.targetdir}",
+         "{COPY} ../Walnut/vendor/MoltenVK/libMoltenVK.dylib %{cfg.targetdir}/libvulkan.1.dylib"
       }
    filter {}
